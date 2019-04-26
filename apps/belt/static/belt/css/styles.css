@@ -1,0 +1,109 @@
+
+/* .details-form p {
+    margin: 10px 5px;
+} */
+#header-bar {
+    background-color: darkgray;
+    border-bottom: 1px groove gray;
+    margin-top: 1%;
+}
+.logo-font {
+    font-family: fantasy;
+    font-size: 3em;
+    color: turquoise;
+    margin-left: 10px;
+    display: inline-block;
+}
+.underscore {
+    font-weight: 800;
+    text-decoration-line: underline;
+}
+#left-header {
+    display: inline-block;
+    vertical-align: top;
+    width: 60%;
+}
+#right-header {
+    display: inline-block;
+    vertical-align: top;
+    width: 35%;
+}
+#right-header a {
+    display: inline-block;
+    text-align: right;
+    position: relative;
+}
+.top-buffer {
+    margin: 4% 0px 0px 5%;
+}
+.dashboard-table {
+    border: 1px solid black;
+}
+.error-text {
+    margin: -5px 0px;
+    color: red;
+}
+.message-box {
+    border: 2px solid red;
+    margin: 5px;
+    padding: 5px;
+}
+.form-section {
+    max-width: 45%;
+    border: 2px solid gray;
+}
+.form-center {
+    text-align: center;
+    margin-top: 20px;
+}
+.align-right {
+    text-align: right;
+}
+.shadow-btn {
+    width: 80px;
+    margin: 30px auto;
+    padding: 10px;
+    box-shadow: 5px 5px;
+}
+.bottom-links {
+    margin-top: 70px;
+}
+.side-by-side {
+    display: inline-block;
+    vertical-align: top;
+    min-width: 47.5%;
+    margin: 2% 2% 2% 0%;
+}
+
+.option-grp {
+    border: 2px solid gray;
+    border-radius: 5px;
+    min-height: 40px;
+    margin-top: 3%;
+    text-align: center;
+    padding: 1%;
+}
+.option-item {
+    margin-left: 15px;
+}
+.trip-form-block {
+    border: 2px solid burlywood;
+    display: inline-block;
+    vertical-align: top;
+    padding: 4%;
+    width: 49.7%;
+}
+.globes-img {
+    display: inline-block;
+    vertical-align: top;
+}
+.globes input {
+    display: inline-block;
+    vertical-align: top;
+    width: 60px;
+}
+#profile-img {
+    border: 2px dotted gray;
+    height: 80px;
+    width: 60px;
+}

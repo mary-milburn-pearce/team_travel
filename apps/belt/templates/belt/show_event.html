@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'belt/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'belt/css/bootstrap.min.css' %}">
+    <title>Event Details</title>
+</head>
+<body>
+    <div class="container">
+        <div id="header-bar">
+            <div id="left-header">
+                <h2 class="logo-font">Team Travel</h2>
+            </div>
+            <div id="right-header">
+                <a href="/dashboard/{{ request.session.user_id }}" class="top-buffer">Dashboard</a>
+                <a href="/logout" class="to-right">Logout</a>
+            </div>
+        </div>
+        <div class="form-group trip-form-block">
+            <h3>Destination <span class="underscore">{{ event.destination }}</span>!</h3>
+            <p>Start Date: {{ event.start_date | date:"m/d/y" }}</p>
+            <p>End Date: {{ event.end_date | date:"m/d/y" }}</p>
+            <p>Created On: {{ event.created_at | date:"m/d/y" }}</p>
+            <p>Last Updated: {{ event.updated_at | date:"m/d/y" }}</p>
+            <p>Plan: {{ event.plan }}</p>
+            <p>Organizer: <a href="/profile/{{event.organizer.id}}">{{ event.organizer.user_name }}</a></p>
+        </div>
+        <div class="form-group trip-form-block">
+            <h3>Participants:</h3>
+            {% for p in coming %}
+                <p><a href="/profile/{{ p.id }}">{{ p.user_name }}</p>
+            {% endfor %}
+            {% if request.session.user_id == host.id %}
+                <h3>Pending requests:</h3>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Request From</th>
+                        <th>Submitted On</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    {% for req in reqs%}
+                    <tr>
+                        <td><a href="/profile/{{req.requestor.id}}">{{ req.requestor.first_name }}</a></td>
+                        <td>{{ req.created_at | date:"M d, Y" }}</td>
+                        <td><a href="/event/{{req.id}}/request/{{req.requestor.id}}/accept">Accept</a></td>
+                        <td><a href="/event/{{req.id}}/request/{{req.requestor.id}}/decline">Decline</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% endif %}
+        </div>
+        <div class="form-group trip-form-block">
+            <a href="/auth_g_sheets" class="to-right">Sheets</a>
+        </div>
+    </div>
+</body>
+</html>

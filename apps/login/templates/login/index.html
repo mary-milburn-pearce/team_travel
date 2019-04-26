@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="829922578633-c3qntj0d48n7qv65nasj9vqv18a0oi1g.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'login/css/bootstrap.min.css' %}">
+    <title>Login and Registration</title>
+</head>
+<body>
+    <main role="main">
+        <section class="container-fluid">
+            <h2>Login and Registration</h2>
+            {% if messages %}
+                <div class="message-box">    
+                {% for msg in messages %}
+                    <p class="error-text">{{ msg }}</p>
+                {% endfor %}
+                </div>
+            {% endif %}
+            <div class="row">
+                <div class="col-sm-6 form-section" id="left-form">
+                    <form action='/register' class='form-horizontal' method='post'>
+                        {% csrf_token %} 
+                        <h3>Register Here!</h3>
+                        <p>First Name: <input type='text' class="form-control" name='fname' value="{{ fname }}"></p>
+                        <p>Last Name: <input type='text' class="form-control" name='lname' value="{{ lname }}"></p>
+                        <p>User Name: <input type='text' class="form-control" name='uname' value="{{ uname }}"></p>
+                        <p>Email Address (must be unique): <input type='text' class="form-control" name='email' value="{{ email }}"></p>
+                        <p>Password: <input type='password' class="form-control" name='pw'></p>
+                        <p>Confirm Password: <input type='password' class="form-control" name='pwconf'></p>
+                        <p><input type='submit' class="btn btn-primary"></p>
+                    </form>
+                </div>
+
+                <div class="col-sm-6 form-section">
+                    <form action='/login' method='post'>
+                        {% csrf_token %} 
+                        <h3>Login Here!</h3>
+                        <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> -->
+                        <!-- <a href="/login/google" class="google-btn"><img class="google-btn" src="{% static 'login/img/google_auth.png' %}"></a>
+                        <h3>Or</h3> -->
+                        <p>Email Address: <input type='text' class="form-control" name='email'></p>
+                        <p>Password: <input type='password' class="form-control" name='pw'></p>
+                        <p><input type='submit' class="btn btn-primary" value="Login"></p>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    <!-- <script>
+        function onSignIn(googleUser) {
+          // Useful data for your client-side scripts:
+          var profile = googleUser.getBasicProfile();
+          console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+          console.log('Full Name: ' + profile.getName());
+          console.log('Given Name: ' + profile.getGivenName());
+          console.log('Family Name: ' + profile.getFamilyName());
+          console.log("Image URL: " + profile.getImageUrl());
+          console.log("Email: " + profile.getEmail());
+  
+          // The ID token you need to pass to your backend:
+          var id_token = googleUser.getAuthResponse().id_token;
+          console.log("ID Token: " + id_token);
+        }
+      </script>   -->
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    {% load static %}
+    <script src="{% static 'belt/js/jstars.min.js' %}"></script>    
+    <link rel="stylesheet" href="{% static 'login/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'login/css/bootstrap.min.css' %}">
+    <title>Member Profile</title>
+</head>
+    <body>
+        <div class="container-fluid">
+            <div id="header-bar">
+                <div id="left-header">
+                    <h2 class="logo-font">Team Travel</h2>
+                </div>
+                <div id="right-header">
+                    <a href="/dashboard/{{ request.session.user_id }}" class="top-buffer">Dashboard</a>
+                    <a href="/logout" class="top-buffer">Logout</a>
+                </div>
+            </div>
+            <h2>Member: {{ profile.user_name }}</h2>
+            <div class="form-group trip-form-block">
+                <h3>Name: {{ profile.first_name }} {{ profile.last_name }}</h3>
+                <p>Member since: {{ profile.created_at | date:"m/d/y" }}</p>
+                <p>Total Earth Points:  <h3 id="ep_total">{{ tot_points }}</h3></p>
+            </div>
+            <div class="form-group trip-form-block">
+                <table class="table table-striped trip-table">
+                    <tr>
+                        <th>My trips with {{ profile.first_name }}:</th>
+                        <th>{{ profile.first_name }}'s Earth Points from me</th>
+                    </tr>
+                    {% for ev in our_trips %}
+                    <tr class="trip-row">
+                        <td>
+                            <a href="/event/{{ev.trip.id}}">{{ ev.trip.destination }} ({{ ev.trip.start_date | date:"M d, Y" }})</a>
+                        </td>
+                        <td>
+                            <form action="/create_post/" method="POST" id="post-form">
+                                <div class="globes">
+                                    <img src="{% static 'belt/img/circle.png' %}" src-full="{% static 'belt/img/globe.png' %}" src-empty="{% static 'belt/img/circle.png' %}" id="{{ev.id}}globe1" num="1">
+                                    <img src="{% static 'belt/img/circle.png' %}" src-full="{% static 'belt/img/globe.png' %}" src-empty="{% static 'belt/img/circle.png' %}" id="{{ev.id}}globe2" num="2">
+                                    <img src="{% static 'belt/img/circle.png' %}" src-full="{% static 'belt/img/globe.png' %}" src-empty="{% static 'belt/img/circle.png' %}" id="{{ev.id}}globe3" num="3">
+                                    <img src="{% static 'belt/img/circle.png' %}" src-full="{% static 'belt/img/globe.png' %}" src-empty="{% static 'belt/img/circle.png' %}" id="{{ev.id}}globe4" num="4">
+                                    <img src="{% static 'belt/img/circle.png' %}" src-full="{% static 'belt/img/globe.png' %}" src-empty="{% static 'belt/img/circle.png' %}" id="{{ev.id}}globe5" num="5">
+                                    <input type="hidden" value="{{ev.pts}}" class="points" name="points">
+                                    <input type="hidden" value="{{request.session.user_id}}" class="from_id" name="from_id">
+                                    <input type="hidden" value="{{profile.id}}" class="to_id" name="to_id">
+                                    <input type="hidden" value="{{ev.trip.id}}" class="trip_id" name="trip_id">
+                                    <!-- <input type="submit" value="Clear"> -->
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <script src="{% static 'belt/js/main.js' %}"></script>
+    </body>
+</html>

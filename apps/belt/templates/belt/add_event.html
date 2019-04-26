@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'belt/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'belt/css/bootstrap.min.css' %}">
+    <title>New Trip</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header-bar">
+            <div id="left-header">
+                <h2 class="logo-font">Team Travel</h2>
+            </div>
+            <div id="right-header">
+                <a href="/dashboard/{{ request.session.user_id }}" class="top-buffer">Dashboard</a>
+                <a href="/logout" class="to-right">Logout</a>
+            </div>
+        </div>
+        <div class="form-group narrow-form">
+            <form action="/add_event" method='POST'>
+                {% csrf_token %} 
+                {% for msg in messages %}
+                    <p class="error-text">{{ msg }}</p>
+                {% endfor %}
+                <label for="dest">Destination:</label>
+                <input type="text" class="form-control" name="dest" value="{{ dest }}">
+                <div class="side-by-side date-field">
+                    <label for="start">Start Date:</label>
+                    <input type="date" class="form-control" name="start_dt" value="{{ start_dt }}">
+                </div>
+                <div class="side-by-side date-field">
+                    <label for="end">End Date:</label>
+                    <input type="date" class="form-control" name="end_dt" value="{{ end_dt }}">
+                </div>
+                <label for="plan">Plan:</label>
+                <input type="text" class="form-control" name="plan" value="{{ plan }}">
+                <div class="option-grp">
+                    <label for="part_type">Participation:</label>
+                    <label class="radio-inline option-item"><input type="radio" name="part_type" value="0" checked>Open</label>
+                    <label class="radio-inline option-item"><input type="radio" name="part_type" value="1">By Request</label>
+                </div>
+                <div class="form-center">
+                    <a href="/dashboard/{{ request.session.user_id }}" class="btn btn-primary">Cancel</a>
+                    <input type="submit" value="Submit" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
