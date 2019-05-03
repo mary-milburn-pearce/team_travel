@@ -1,6 +1,6 @@
-import google.oauth2.credentials
-import google_auth_oauthlib.flow
-from googleapiclient.discovery import build
+# import google.oauth2.credentials
+# import google_auth_oauthlib.flow
+# from googleapiclient.discovery import build
 from django.shortcuts import render, redirect, HttpResponse
 from apps.login.models import Person
 

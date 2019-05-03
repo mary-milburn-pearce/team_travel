@@ -1,6 +1,6 @@
 
 from django.shortcuts import render, redirect, HttpResponse
-from google.oauth2 import service_account
+# from google.oauth2 import service_account
 import datetime, random, re, datetime, bcrypt
 from django.contrib import messages
 from apps.login.models import Person
@@ -95,41 +95,41 @@ def logout(request):
     return redirect("/")
 
 def login_google(request):
-    request.session['logged-in']=False
-    print ("In google login!")
-    # Login with service account - WORKING
-    # SCOPES = ['https://www.googleapis.com/auth/sqlservice.admin',
-    #     'https://www.googleapis.com/auth/drive.file',  #Drive v3
-    #     'https://www.googleapis.com/auth/drive.metadata',   #Drive v3
-    #     'https://www.googleapis.com/auth/userinfo.email',  #OAuth2 v2
-    #     'https://www.googleapis.com/auth/userinfo.profile',  #OAuth2 v2
-    #     'https://www.googleapis.com/auth/spreadsheets']   #Sheets v4
-    # SERVICE_ACCOUNT_FILE = './team-travel-238415-5d651ecfa747.json'
-    # credentials = service_account.Credentials.from_service_account_file(
-    #     SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-    # if credentials:
-    #     print(credentials)
-    #     return redirect(f"/dashboard/{user.id}")
-    # else:
-    #     return redirect("/")
+    # request.session['logged-in']=False
+    # print ("In google login!")
+    # # Login with service account - WORKING
+    # # SCOPES = ['https://www.googleapis.com/auth/sqlservice.admin',
+    # #     'https://www.googleapis.com/auth/drive.file',  #Drive v3
+    # #     'https://www.googleapis.com/auth/drive.metadata',   #Drive v3
+    # #     'https://www.googleapis.com/auth/userinfo.email',  #OAuth2 v2
+    # #     'https://www.googleapis.com/auth/userinfo.profile',  #OAuth2 v2
+    # #     'https://www.googleapis.com/auth/spreadsheets']   #Sheets v4
+    # # SERVICE_ACCOUNT_FILE = './team-travel-238415-5d651ecfa747.json'
+    # # credentials = service_account.Credentials.from_service_account_file(
+    # #     SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+    # # if credentials:
+    # #     print(credentials)
+    # #     return redirect(f"/dashboard/{user.id}")
+    # # else:
+    # #     return redirect("/")
 
-    # Login with User Flow - WORKING
-    flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
-        'client_secret.json',
-        scopes=['email', 'profile',
-            'https://www.googleapis.com/auth/drive.file'])
+    # # Login with User Flow - WORKING
+    # flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
+    #     'client_secret.json',
+    #     scopes=['email', 'profile',
+    #         'https://www.googleapis.com/auth/drive.file'])
 
-    flow.redirect_uri = 'http://localhost:8000/signincallback'
+    # flow.redirect_uri = 'http://localhost:8000/signincallback'
 
-    # Generate URL for request to Google's OAuth 2.0 server.
-    authorization_url, state = flow.authorization_url(
-        # Enable offline access so that you can refresh an access token without
-        # re-prompting the user for permission. Recommended for web server apps.
-        access_type='offline',
-        # Enable incremental authorization. Recommended as a best practice.
-        include_granted_scopes='true')
-    print("Authorization URL:", authorization_url)
-    request.session['flow']=flow
+    # # Generate URL for request to Google's OAuth 2.0 server.
+    # authorization_url, state = flow.authorization_url(
+    #     # Enable offline access so that you can refresh an access token without
+    #     # re-prompting the user for permission. Recommended for web server apps.
+    #     access_type='offline',
+    #     # Enable incremental authorization. Recommended as a best practice.
+    #     include_granted_scopes='true')
+    # print("Authorization URL:", authorization_url)
+    # request.session['flow']=flow
     return redirect(authorization_url)
 
     # return render(request, "login/google_auth.html")
