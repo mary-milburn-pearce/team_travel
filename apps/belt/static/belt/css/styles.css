@@ -6,6 +6,7 @@
     background-color: darkgray;
     border-bottom: 1px groove gray;
     margin-top: 1%;
+    margin-bottom: 2%;
 }
 .logo-font {
     font-family: fantasy;
@@ -103,7 +104,7 @@
     width: 60px;
 }
 #profile-img {
-    border: 2px dotted gray;
-    height: 80px;
-    width: 60px;
+    border: 2px solid gray;
+    height: 140px;
+    width: 100px;
 }

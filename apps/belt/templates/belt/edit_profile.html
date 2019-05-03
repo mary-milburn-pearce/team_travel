@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'login/css/styles.css' %}">
-    <link rel="stylesheet" href="{% static 'login/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'belt/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'belt/css/bootstrap.min.css' %}">
     <title>My Profile</title>
 </head>
 <body>
@@ -36,6 +36,7 @@
             </form>
         </section>
         <hr>
+        <h3>Profile Photo</h3>
         <div class="side-by-side">
             {% block content %}
             <form method="post" action="/profile/photo_upload" enctype="multipart/form-data">

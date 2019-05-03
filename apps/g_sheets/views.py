@@ -34,7 +34,7 @@ def auth_g_sheets(request):
     return redirect(authorization_url)
 
 def oauth2_landing(request):
-    return HttpResponse("Made it to Landing!!!!!")
+    return HttpResponse("All the amazing GooGle Sheets to organize our trip will be here!!!")
 
 def open_g_sheet(request):
     SAMPLE_SPREADSHEET_ID = '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms'

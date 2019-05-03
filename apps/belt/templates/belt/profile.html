@@ -23,6 +23,7 @@
                 </div>
             </div>
             <h2>Member: {{ profile.user_name }}</h2>
+            <img id="profile-img" src="{{ profile.photo }}" alt="No Photo Available">
             <div class="form-group trip-form-block">
                 <h3>Name: {{ profile.first_name }} {{ profile.last_name }}</h3>
                 <p>Member since: {{ profile.created_at | date:"m/d/y" }}</p>
